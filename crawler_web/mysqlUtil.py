@@ -1,31 +1,25 @@
-import  pymysql
+import pymysql
 
-def connDB():               #连接数据库
-  conn=pymysql.connect(host="localhost",user="root",passwd="root",db="crawler_web");
-  cur=conn.cursor();
-  return (conn,cur);
+class mysql_utils:
+    def __init__(self, host='127.0.0.1', username='root', password='root', port='3306', database = ''):
+        self.host = host
+        self.username = username
+        self.password = password
+        self.port = port
+        self.database = database
 
-def exeUpdate(conn,cur,sql):        #更新或插入操作
-  sta=cur.execute(sql);
-  conn.commit();
-  return (sta);
+    def get_cursor(self):
+        conn = pymysql.connect(host=self.host,user=self.username,passwd=self.password,db=self.database,charset='utf8')
+        cursor = conn.cursor()
+        return cursor
+    def insert(self,sql):
+        try:
+            cursor = mysql_utils.get_cursor(self)
+            cursor.execute(sql)
+        except:
+            raise pymysql.Error
+        finally:
+            cursor.close()
 
-def exeDelete(conn,cur,IDs):        #删除操作
-  sta=0;
-  for eachID in IDs.split(' '):
-    sta+=cur.execute("delete from students where Id=%d"%(int(eachID)));
-  conn.commit();
-  return (sta);
 
 
-def exeQuery(cur,sql):              #查询语句
-
-    cur.execute(sql);
-
-    return (cur);
-
-def connClose(conn,cur):            #关闭所有连接
-
-    cur.close()
-
-    conn.close()
