@@ -1,17 +1,10 @@
 import pymysql
 
-class mysql_utils:
-    def __init__(self, host='127.0.0.1', username='root', password='root', port='3306', database = ''):
-        self.host = host
-        self.username = username
-        self.password = password
-        self.port = port
-        self.database = database
+class mysql_utils(object):
+    def get_conn(host,username,password,database):
+        conn = pymysql.connect(host,username,password,database,charset='utf8')
+        return conn
 
-    def get_cursor(self):
-        conn = pymysql.connect(host=self.host,user=self.username,passwd=self.password,db=self.database,charset='utf8')
-        cursor = conn.cursor()
-        return cursor
     def insert(self,sql):
         try:
             cursor = mysql_utils.get_cursor(self)
@@ -20,6 +13,8 @@ class mysql_utils:
             raise pymysql.Error
         finally:
             cursor.close()
+
+
 
 
 

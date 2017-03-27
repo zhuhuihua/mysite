@@ -1,8 +1,11 @@
 from django.test import TestCase
 
-from mysqlUtil_ import insert
+import mysqlUtil
 import time
 import uuid
 
+conn = mysqlUtil.mysql_utils.get_conn('localhost','root','123456','crawler_web')
 sql = 'insert into aa(name) VALUES ( "ggegee")'
-insert(sql)
+cursor = conn.cursor()
+cursor.execute(sql)
+conn.commit()
