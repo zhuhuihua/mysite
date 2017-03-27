@@ -1,9 +1,8 @@
 from django.test import TestCase
 
-from mysqlUtil import *
+from mysqlUtil_ import insert
 import time
-from uuid import uuid4
+import uuid
 
-mysql_util = mysql_utils(host='localhost', username='root', password='root', port=3306, database='crawler_web')
-sql = 'insert into crawler_web_task(t_id, regex) VALUES (uuid.uuid4(), "")'
-mysql_util.insert(sql)
+sql = 'insert into aa(name) VALUES ( "ggegee")'
+insert(sql)
