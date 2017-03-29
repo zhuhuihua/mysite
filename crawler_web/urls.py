@@ -4,4 +4,5 @@ from crawler_web import views
 
 urlpatterns = [
     url(r'^crawler_web/$',  views.index),
+    url(r'^register/$',  views.register),
 ]

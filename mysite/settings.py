@@ -80,7 +80,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql', #设置为mysql数据库
         'NAME': 'crawler_web',  #mysql数据库名
         'USER': 'root',  #mysql用户名，留空则默认为当前linux用户名
-        'PASSWORD': '123456',   #mysql密码
+        'PASSWORD': 'root',   #mysql密码
         'HOST': 'localhost',  #留空默认为localhost
         'PORT': '3306',  #留空默认为3306端口
     }
